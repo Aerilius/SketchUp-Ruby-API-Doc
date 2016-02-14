@@ -40,7 +40,13 @@ module UI
     def self.menu(menu_name = nil)
     end
 
-    def self.messagebox(message, type = IDOK)
+    # Creates a dialog box containing static text with a series of buttons for the user to choose from.
+    # @param [String] message  The message that you want to appear in the message box.
+    # @param [Integer] type    Optionally a constant that represents the messagebox type, which buttons it shows.
+    # @return [Integer] A number matching a constant that represents what button the user pressed.
+    #   Use the following constants to check what the user selected:
+    #   IDOK, IDCANCEL, IDABORT, IDRETRY, IDIGNORE, IDYES, IDNO
+    def self.messagebox(message, type=MB_OK)
     end
     
     # Display a list of the names of the available tabs in the Model Info Window.
@@ -50,14 +56,21 @@ module UI
     def self.openURL(url)
     end
 
-    # File selection dialog.
+    # File selection dialog, in which the user can select from existing files.
+    # @param [String] title  The title to show on the file selection dialog's titlebar.
+    # @param [String] path   The path of the folder to show initially.
+    # @param [String] filename  A default selected filename. On Windows, this can also be a file filter
+    #   for the file format dropdown to filter which files are displayed.
+    #   The file filter follows this pattern:
+    #   `UIname1|wildcard1|UIname2|wildcard21;wildcard2b||``
+    # @return [String, nil] The full path ane name of the selected file or nil if the dialog was cancelled.
+    # @note Take care to check that not nil was returned before continuing with operations on the path.
     # @version 2014
     # @example
     #  chosen_model = UI.openpanel("Open SKP File", "c:/", "model.skp")
     #  chosen_image = UI.openpanel("Open Image File", "c:/", "Image Files|*.jpg;*.png;||")
     #  chosen_file  = UI.openpanel("Open CAD File", "c:/", "DXF|*.dxf|DWG|*.dwg||")
-    # 
-    def self.openpanel(title, path, file_filter)
+    def self.openpanel(title=nil, path=nil, filename=nil)
     end
 
     def self.play_sound(filename)
@@ -70,8 +83,16 @@ module UI
     def self.refresh_inspectors
     end
 
-    # File save dialog
-    def self.savepanel(title, path, file_filter)
+    # File save dialog.
+    # @param [String] title  The title to show on the file selection dialog's titlebar.
+    # @param [String] path   The path of the folder to show initially.
+    # @param [String] filename  A default filename. On Windows, this can also be a file filter
+    #   for the file format dropdown to filter which files are displayed.
+    #   The file filter follows this pattern:
+    #   `UIname1|wildcard1|UIname2|wildcard21;wildcard2b||``
+    # @return [String, nil] The full path ane name of the selected file or nil if the dialog was cancelled.
+    # @note Take care to check that not nil was returned before continuing with operations on the path.
+    def self.savepanel(title=nil, path=nil, filename=nil)
     end
 
     # @since 2015
@@ -86,12 +107,16 @@ module UI
 
     def self.set_cursor(cursor_id)
     end
+
     def self.set_toolbar_visible(name, visible)
     end
+
     def self.show_inspector(name)
     end
+
     def self.show_model_info(page)
     end
+
     def self.show_preferences(page)
     end
 
@@ -115,8 +140,10 @@ module UI
     
     def self.toolbar(name)
     end
+
     def self.toolbar_names
     end
+
     def self.toolbar_visible?(name)
     end
 end
